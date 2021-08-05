@@ -11,6 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import br.edu.ifgoias.sistemaacademico.util.ListDeserializerCurso;
+import br.edu.ifgoias.sistemaacademico.util.ListSerializerCurso;
+
 @Entity
 public class Aluno implements Serializable{
 
@@ -25,6 +31,8 @@ public class Aluno implements Serializable{
 	private Date dt_nasc;
 	
 	@ManyToMany(mappedBy = "alunos")
+	@JsonSerialize(using = ListSerializerCurso.class)
+	@JsonDeserialize(using = ListDeserializerCurso.class)
 	private List<Curso> cursos = new ArrayList<>();
 	
 	public Aluno() {

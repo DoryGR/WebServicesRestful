@@ -16,34 +16,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifgoias.sistemaacademico.entities.Curso;
-import br.edu.ifgoias.sistemaacademico.services.CursoService;
+import br.edu.ifgoias.sistemaacademico.entities.Aluno;
+import br.edu.ifgoias.sistemaacademico.services.AlunoService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping ( value = "/cursos")
-public class CursoResource {
+@RequestMapping ( value = "/alunos")
+public class AlunoResource {
 
 	@Autowired
-	private CursoService service;
+	private AlunoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Curso>> findAll(){
-		List<Curso>  listaCurso = service.findAll();
-		return ResponseEntity.ok().body(listaCurso);
+	public ResponseEntity<List<Aluno>> findAll(){
+		List<Aluno>  listaAluno = service.findAll();
+		return ResponseEntity.ok().body(listaAluno);
 	}
 	
 	@GetMapping ( value = "/{id}")
-	public ResponseEntity<Curso> findById(@PathVariable Integer id){
-		Curso curso = service.findById(id);
-		return ResponseEntity.ok().body(curso);
+	public ResponseEntity<Aluno> findById(@PathVariable Integer id){
+		Aluno a = service.findById(id);
+		return ResponseEntity.ok().body(a);
 	}
 	
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public ResponseEntity<Curso> insert(@RequestBody Curso c) {
-	       c = service.insert(c);
-		   return ResponseEntity.ok().body(c);
+	public ResponseEntity<Aluno> insert(@RequestBody Aluno a) {
+	       a = service.insert(a);
+		   return ResponseEntity.ok().body(a);
 	}
 	
 	@DeleteMapping (value = "/{id}")
@@ -54,8 +54,8 @@ public class CursoResource {
 	
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)		
-	public ResponseEntity<Curso> update (@PathVariable Integer id, @RequestBody Curso c){
-		c = service.update(id, c);
-		return ResponseEntity.ok().body(c);
+	public ResponseEntity<Aluno> update (@PathVariable Integer id, @RequestBody Aluno a){
+		a= service.update(id, a);
+		return ResponseEntity.ok().body(a);
 	}
 }

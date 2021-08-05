@@ -9,9 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import br.edu.ifgoias.sistemaacademico.util.ListDeserializerAluno;
+import br.edu.ifgoias.sistemaacademico.util.ListSerializerAluno;
 
 @Entity
 public class Curso  implements Serializable{
@@ -30,6 +35,8 @@ public class Curso  implements Serializable{
 				joinColumns = @JoinColumn(name="idcurso"),
 				inverseJoinColumns = @JoinColumn(name="idaluno")
 				)
+	@JsonSerialize(using = ListSerializerAluno.class)
+	@JsonDeserialize(using = ListDeserializerAluno.class)
 	private List<Aluno> alunos = new ArrayList<>();
 	
 	public Curso() {
