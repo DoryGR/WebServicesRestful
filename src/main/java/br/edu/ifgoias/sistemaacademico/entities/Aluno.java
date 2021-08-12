@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -28,6 +32,7 @@ public class Aluno implements Serializable{
 	
 	private String nome;
 	private String sexo;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dt_nasc;
 	
 	@ManyToMany(mappedBy = "alunos")

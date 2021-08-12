@@ -39,7 +39,9 @@ public class AlunoService {
 	public Aluno update (Integer id, Aluno a) {
 		return repository.findById(id).map(
 					aluno -> { 
-								aluno.setNome(  a.getNome() ); 
+								aluno.setNome( a.getNome() ); 
+								aluno.setSexo( a.getSexo() ); 
+								aluno.setDt_nasc( a.getDt_nasc() );
 							    return repository.save(aluno);
 							 }).orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND) );
 	}
